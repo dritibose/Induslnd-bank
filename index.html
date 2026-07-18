@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IndusInd Insure — Health Insurance, Simplified</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======================= TOAST HOST ======================= -->
+<div id="toastHost" class="toast-host"></div>
+
+<!-- ======================= ONBOARDING ======================= -->
+<section id="view-onboarding" class="view view-full active">
+  <div class="onb-wrap">
+    <div class="onb-skip"><button class="btn-ghost" data-action="skip-onboarding">Skip</button></div>
+    <div class="onb-track" id="onbTrack">
+
+      <div class="onb-slide active" data-slide="0">
+        <div class="onb-art onb-art--protect">
+          <svg viewBox="0 0 240 240" class="onb-ring-svg"><circle cx="120" cy="120" r="96" class="onb-ring-bg"/><circle cx="120" cy="120" r="96" class="onb-ring-fg" style="--pct:0.82"/></svg>
+          <svg class="onb-glyph" viewBox="0 0 64 64"><path d="M32 4 L58 14 V30 C58 46 47 57 32 60 C17 57 6 46 6 30 V14 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M22 32 L29 39 L43 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h1>Health protection that shows up before you need it</h1>
+        <p>One coverage ring tracks your family's protection in real time — no digging through policy PDFs.</p>
+      </div>
+
+      <div class="onb-slide" data-slide="1">
+        <div class="onb-art onb-art--emergency">
+          <svg viewBox="0 0 240 240" class="onb-ring-svg"><circle cx="120" cy="120" r="96" class="onb-ring-bg"/><circle cx="120" cy="120" r="96" class="onb-ring-fg" style="--pct:0.94"/></svg>
+          <svg class="onb-glyph" viewBox="0 0 64 64"><path d="M32 6 L32 26 M32 26 L14 26 M32 26 L50 26 M32 26 L32 58" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="26" r="9" fill="none" stroke="currentColor" stroke-width="3.5"/></svg>
+        </div>
+        <h1>Cashless emergencies at 8,400+ hospitals</h1>
+        <p>Live bed availability, one-tap directions, and instant e-cards — even offline in the hospital lobby.</p>
+      </div>
+
+      <div class="onb-slide" data-slide="2">
+        <div class="onb-art onb-art--ai">
+          <svg viewBox="0 0 240 240" class="onb-ring-svg"><circle cx="120" cy="120" r="96" class="onb-ring-bg"/><circle cx="120" cy="120" r="96" class="onb-ring-fg" style="--pct:1"/></svg>
+          <svg class="onb-glyph" viewBox="0 0 64 64"><circle cx="32" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M14 56 C14 42 21 36 32 36 C43 36 50 42 50 56" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="24" r="3" fill="currentColor"/></svg>
+        </div>
+        <h1>An AI that reads the fine print for you</h1>
+        <p>Ask "what's my co-pay?" in plain words. Get plain answers, cited from your actual policy.</p>
+      </div>
+
+    </div>
+
+    <div class="onb-dots" id="onbDots">
+      <span class="onb-dot active" data-dot="0"></span>
+      <span class="onb-dot" data-dot="1"></span>
+      <span class="onb-dot" data-dot="2"></span>
+    </div>
+
+    <div class="onb-actions">
+      <button class="btn-primary btn-block" id="onbNextBtn" data-action="onboarding-next">Next</button>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LOGIN ======================= -->
+<section id="view-login" class="view view-full">
+  <div class="auth-wrap">
+    <div class="auth-brand">
+      <div class="brand-mark"><span>II</span></div>
+      <span class="brand-word">IndusInd <b>Insure</b></span>
+    </div>
+
+    <div class="auth-card" id="authCard">
+
+      <!-- Password login -->
+      <div class="auth-pane active" data-pane="password">
+        <h1>Welcome back</h1>
+        <p class="auth-sub">Sign in to manage your policies and claims.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="loginEmail">Email address</label>
+            <input type="email" id="loginEmail" placeholder="priya.sharma@gmail.com" autocomplete="email">
+            <span class="field-error" id="err-loginEmail"></span>
+          </div>
+          <div class="field">
+            <label for="loginPassword">Password</label>
+            <div class="input-with-action">
+              <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password">
+              <button type="button" class="input-action-btn" data-action="toggle-password" data-target="loginPassword">Show</button>
+            </div>
+            <span class="field-error" id="err-loginPassword"></span>
+          </div>
+
+          <div class="auth-row">
+            <label class="checkbox">
+              <input type="checkbox" id="rememberMe" checked>
+              <span class="checkbox-box"></span>
+              Remember me
+            </label>
+            <button type="button" class="link-btn" data-action="open-forgot">Forgot password?</button>
+          </div>
+
+          <button type="submit" class="btn-primary btn-block" id="loginSubmitBtn">
+            <span class="btn-label">Sign in</span>
+            <span class="btn-spinner" hidden></span>
+          </button>
+        </form>
+
+        <div class="auth-divider"><span>or continue with</span></div>
+
+        <div class="auth-alt-row">
+          <button class="btn-secondary btn-block" data-action="google-login">
+            <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 01-1.8 2.72v2.26h2.9c1.7-1.57 2.68-3.87 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.94v2.33A9 9 0 009 18z"/><path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 013.68 9c0-.59.1-1.17.27-1.7V4.97H.94A9 9 0 000 9c0 1.45.35 2.83.94 4.03l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.46 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 00.94 4.97l3.01 2.33C4.66 5.17 6.65 3.58 9 3.58z"/></svg>
+            Google
+          </button>
+          <button class="btn-secondary btn-block" data-action="switch-to-otp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            OTP login
+          </button>
+        </div>
+
+        <p class="auth-foot">New to IndusInd Insure? <button class="link-btn" data-action="switch-to-signup">Create account</button></p>
+      </div>
+
+      <!-- OTP login -->
+      <div class="auth-pane" data-pane="otp">
+        <button class="back-btn" data-action="switch-to-password">← Back to password</button>
+        <h1>Sign in with OTP</h1>
+        <p class="auth-sub" id="otpSubText">We'll text a 6-digit code to your registered mobile number.</p>
+
+        <div id="otpPhoneStep">
+          <div class="field">
+            <label for="otpPhone">Mobile number</label>
+            <div class="phone-input">
+              <span>+91</span>
+              <input type="tel" id="otpPhone" placeholder="98765 43210" maxlength="10">
+            </div>
+            <span class="field-error" id="err-otpPhone"></span>
+          </div>
+          <button class="btn-primary btn-block" data-action="send-otp">Send OTP</button>
+        </div>
+
+        <div id="otpCodeStep" hidden>
+          <div class="otp-boxes">
+            <input maxlength="1" class="otp-box" inputmode="numeric">
+            <input maxlength="1" class="otp-box" inputmode="numeric">
+            <input maxlength="1" class="otp-box" inputmode="numeric">
+            <input maxlength="1" class="otp-box" inputmode="numeric">
+            <input maxlength="1" class="otp-box" inputmode="numeric">
+            <input maxlength="1" class="otp-box" inputmode="numeric">
+          </div>
+          <p class="otp-hint">Demo code: <b>4 4 5 5 1 2</b> · <button class="link-btn" id="resendOtpBtn" data-action="resend-otp">Resend</button></p>
+          <button class="btn-primary btn-block" id="verifyOtpBtn" data-action="verify-otp">
+            <span class="btn-label">Verify &amp; sign in</span>
+            <span class="btn-spinner" hidden></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Signup -->
+      <div class="auth-pane" data-pane="signup">
+        <button class="back-btn" data-action="switch-to-password">← Back to sign in</button>
+        <h1>Create your account</h1>
+        <p class="auth-sub">Takes under a minute. No paperwork.</p>
+        <form id="signupForm" novalidate>
+          <div class="field">
+            <label for="suName">Full name</label>
+            <input type="text" id="suName" placeholder="As per government ID">
+          </div>
+          <div class="field">
+            <label for="suEmail">Email address</label>
+            <input type="email" id="suEmail" placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="suPassword">Create password</label>
+            <input type="password" id="suPassword" placeholder="At least 8 characters">
+          </div>
+          <button type="submit" class="btn-primary btn-block">Create account</button>
+        </form>
+      </div>
+
+      <!-- Success -->
+      <div class="auth-pane" data-pane="success">
+        <div class="auth-success">
+          <div class="success-check"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" class="success-check-circle"/><path fill="none" class="success-check-mark" d="M14 27l7 7 17-17"/></svg></div>
+          <h1>You're in</h1>
+          <p class="auth-sub">Redirecting to your dashboard…</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Forgot password modal -->
+<div class="modal-overlay" id="forgotModal">
+  <div class="modal modal-sm">
+    <button class="modal-close" data-action="close-modal" data-modal="forgotModal">×</button>
+    <div id="forgotStep1">
+      <h2>Reset your password</h2>
+      <p class="modal-sub">Enter the email linked to your account. We'll send a reset link.</p>
+      <div class="field">
+        <label for="forgotEmail">Email address</label>
+        <input type="email" id="forgotEmail" placeholder="priya.sharma@gmail.com">
+      </div>
+      <button class="btn-primary btn-block" data-action="send-reset-link">Send reset link</button>
+    </div>
+    <div id="forgotStep2" hidden>
+      <div class="success-check success-check--sm"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" class="success-check-circle"/><path fill="none" class="success-check-mark" d="M14 27l7 7 17-17"/></svg></div>
+      <h2>Check your inbox</h2>
+      <p class="modal-sub">We've sent a password reset link. It expires in 15 minutes.</p>
+      <button class="btn-secondary btn-block" data-action="close-modal" data-modal="forgotModal">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= APP SHELL ======================= -->
+<div id="app-shell" class="app-shell">
+
+  <!-- Desktop sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><span>II</span></div>
+      <span class="brand-word">IndusInd <b>Insure</b></span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-nav="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Home</span></button>
+      <button class="nav-item" data-nav="policies"><svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6M9 16h6M9 8h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Policies</span></button>
+      <button class="nav-item" data-nav="hospitals"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9.1C.8 8.4 2.6 4.8 6.3 4.3c2-.3 3.6.6 5.7 2.7 2.1-2.1 3.7-3 5.7-2.7 3.7.5 5.5 4.1 3.8 7.6C19 16.4 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Hospitals</span></button>
+      <button class="nav-item" data-nav="claims"><svg viewBox="0 0 24 24"><path d="M9 5h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 3h6v2H9zM9 10l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Claims</span></button>
+      <button class="nav-item" data-nav="renewals"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1015-6.7M3 3v6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Renewals</span></button>
+      <button class="nav-item" data-nav="documents"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 01-1 1H6a1 1 0 01-1-1V3a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Documents</span></button>
+      <button class="nav-item" data-nav="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Profile</span></button>
+      <button class="nav-item" data-nav="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 13.5a7.6 7.6 0 000-3l2-1.6-2-3.4-2.4.7a7.6 7.6 0 00-2.6-1.5L14 2h-4l-.4 2.7a7.6 7.6 0 00-2.6 1.5l-2.4-.7-2 3.4L4.6 10.5a7.6 7.6 0 000 3L2.6 15l2 3.4 2.4-.7a7.6 7.6 0 002.6 1.5L10 22h4l.4-2.7a7.6 7.6 0 002.6-1.5l2.4.7 2-3.4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Settings</span></button>
+    </nav>
+
+    <button class="sidebar-sos" data-action="open-sos">
+      <svg viewBox="0 0 24 24"><path d="M12 2l1.8 5.5L19 9l-4 4 1 5.5-4-3-4 3 1-5.5-4-4 5.2-1.5z" fill="currentColor"/></svg>
+      Emergency SOS
+    </button>
+
+    <button class="sidebar-logout" data-action="logout">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Log out
+    </button>
+  </aside>
+
+  <!-- Main column -->
+  <div class="main-col">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="topbar-search" data-action="open-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.6" y2="16.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Search policies, hospitals, claims…</span>
+        <kbd>⌘K</kbd>
+      </button>
+      <div class="topbar-actions">
+        <button class="icon-btn" data-action="toggle-dark">
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9 7 7 0 01-9-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="icon-btn has-dot" data-action="open-notifications">
+          <svg viewBox="0 0 24 24"><path d="M6 10a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20a2 2 0 004 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button class="topbar-avatar" data-action="go-profile">PS</button>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+
+      <!-- ============ HOME ============ -->
+      <section class="page active" data-page="home">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Good afternoon</p>
+            <h1>Priya, your family is <span class="accent">82% protected</span></h1>
+          </div>
+          <button class="btn-primary" data-action="go-checkup">Book health checkup</button>
+        </div>
+
+        <div class="home-grid">
+
+          <!-- Policy card -->
+          <div class="card card-policy span-8">
+            <div class="card-policy-top">
+              <div>
+                <p class="card-eyebrow">Active policy</p>
+                <h3>Family Health Optima Plus</h3>
+                <p class="policy-no">Policy No. IB-HL-2024-88231</p>
+              </div>
+              <span class="chip chip-success">Active</span>
+            </div>
+            <div class="policy-stats">
+              <div class="policy-stat">
+                <span class="label">Total coverage</span>
+                <span class="value">₹15,00,000</span>
+              </div>
+              <div class="policy-stat">
+                <span class="label">Remaining coverage</span>
+                <span class="value">₹12,40,000</span>
+              </div>
+              <div class="policy-stat">
+                <span class="label">Annual premium</span>
+                <span class="value">₹28,450</span>
+              </div>
+              <div class="policy-stat">
+                <span class="label">Renewal date</span>
+                <span class="value">14 Sep 2026</span>
+              </div>
+            </div>
+            <div class="coverage-bar">
+              <div class="coverage-bar-fill" style="width:82.6%"></div>
+            </div>
+            <div class="policy-actions">
+              <button class="btn-secondary btn-sm" data-action="view-policy" data-id="p1">View details</button>
+              <button class="btn-ghost btn-sm" data-action="download-card">Digital ID card</button>
+              <button class="btn-ghost btn-sm" data-action="go-nav" data-nav="renewals">Manage renewal</button>
+            </div>
+          </div>
+
+          <!-- Health score ring -->
+          <div class="card card-ring span-4">
+            <p class="card-eyebrow">Health score</p>
+            <div class="ring-wrap">
+              <svg viewBox="0 0 160 160" class="ring-svg">
+                <circle cx="80" cy="80" r="68" class="ring-bg"/>
+                <circle cx="80" cy="80" r="68" class="ring-fg" id="healthRing" style="--pct:0.78"/>
+              </svg>
+              <div class="ring-center">
+                <span class="ring-num">78</span>
+                <span class="ring-max">/100</span>
+              </div>
+            </div>
+            <p class="ring-note"><span class="dot dot-success"></span>Good — last synced 2h ago</p>
+          </div>
+
+          <!-- Quick actions -->
+          <div class="card span-12 quick-actions">
+            <p class="card-eyebrow">Quick actions</p>
+            <div class="quick-grid">
+              <button class="quick-item" data-action="go-checkup">
+                <span class="quick-icon">🩺</span>Book checkup
+              </button>
+              <button class="quick-item" data-action="go-nav" data-nav="policies" data-sub="compare">
+                <span class="quick-icon">⚖️</span>Compare policies
+              </button>
+              <button class="quick-item" data-action="open-sos">
+                <span class="quick-icon">🚨</span>Emergency help
+              </button>
+              <button class="quick-item" data-action="go-nav" data-nav="claims">
+                <span class="quick-icon">📄</span>Claim status
+              </button>
+              <button class="quick-item" data-action="open-tool" data-tool="premium-estimator">
+                <span class="quick-icon">🧮</span>Premium estimator
+              </button>
+              <button class="quick-item" data-action="open-tool" data-tool="risk-calc">
+                <span class="quick-icon">❤️</span>Risk calculator
+              </button>
+            </div>
+          </div>
+
+          <!-- Recent claims -->
+          <div class="card span-7">
+            <div class="card-head-row">
+              <p class="card-eyebrow">Recent claims</p>
+              <button class="link-btn" data-action="go-nav" data-nav="claims">View all</button>
+            </div>
+            <div class="mini-list" id="homeClaimsList"></div>
+          </div>
+
+          <!-- Upcoming renewal -->
+          <div class="card span-5">
+            <p class="card-eyebrow">Upcoming renewal</p>
+            <div class="renewal-mini">
+              <div class="renewal-countdown">
+                <span class="count-num" id="renewalDays">58</span>
+                <span class="count-label">days left</span>
+              </div>
+              <div class="renewal-mini-info">
+                <h4>Family Health Optima Plus</h4>
+                <p>Renews 14 Sep 2026 · Get 12% early bird discount</p>
+                <button class="btn-primary btn-sm" data-action="go-nav" data-nav="renewals">Renew now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI recommendation -->
+          <div class="card span-6 card-ai">
+            <div class="card-ai-head">
+              <span class="ai-badge">✨ AI recommendation</span>
+            </div>
+            <h4>Add Critical Illness Rider — ₹4,200/yr</h4>
+            <p>Based on your family's health profile, adding this rider covers 12 critical illnesses with a lump-sum payout, closing your biggest protection gap.</p>
+            <button class="btn-secondary btn-sm" data-action="open-tool" data-tool="ai-assistant">Ask AI why</button>
+          </div>
+
+          <!-- Nearby hospitals -->
+          <div class="card span-6">
+            <div class="card-head-row">
+              <p class="card-eyebrow">Nearby hospitals</p>
+              <button class="link-btn" data-action="go-nav" data-nav="hospitals">View map</button>
+            </div>
+            <div class="mini-list" id="homeHospitalsList"></div>
+          </div>
+
+          <!-- Offers -->
+          <div class="card span-12">
+            <p class="card-eyebrow">Latest offers</p>
+            <div class="offer-row" id="offerRow"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ POLICIES (search) ============ -->
+      <section class="page" data-page="policies">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Marketplace</p>
+            <h1>Find the right policy</h1>
+          </div>
+          <div class="policy-tab-switch">
+            <button class="seg-btn active" data-policy-tab="browse">Browse</button>
+            <button class="seg-btn" data-policy-tab="compare">Compare <span class="seg-count" id="compareCount">0</span></button>
+          </div>
+        </div>
+
+        <div class="policy-browse" data-policy-panel="browse">
+          <div class="search-toolbar">
+            <div class="search-input-wrap">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.6" y2="16.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input type="text" id="policySearchInput" placeholder="Search by plan name, insurer…">
+            </div>
+            <select id="policySortSelect" class="select-input">
+              <option value="value">Sort: Best value</option>
+              <option value="price-asc">Sort: Lowest price</option>
+              <option value="coverage-desc">Sort: Highest coverage</option>
+            </select>
+            <button class="btn-secondary btn-sm" data-action="toggle-filters">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Filters
+            </button>
+          </div>
+
+          <div class="filters-panel" id="filtersPanel">
+            <div class="filter-group">
+              <label>Price range (₹/year)</label>
+              <input type="range" min="5000" max="60000" step="500" value="60000" id="priceSlider" class="slider">
+              <div class="filter-value">Up to <span id="priceSliderVal">₹60,000</span></div>
+            </div>
+            <div class="filter-group">
+              <label>Minimum coverage</label>
+              <select id="coverageFilter" class="select-input">
+                <option value="0">Any</option>
+                <option value="500000">₹5 lakh+</option>
+                <option value="1000000">₹10 lakh+</option>
+                <option value="1500000">₹15 lakh+</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label>Age band</label>
+              <select id="ageFilter" class="select-input">
+                <option value="any">Any</option>
+                <option value="18-35">18–35</option>
+                <option value="36-50">36–50</option>
+                <option value="51-65">51–65</option>
+              </select>
+            </div>
+            <div class="filter-group filter-checks">
+              <label class="checkbox"><input type="checkbox" id="fFamily"><span class="checkbox-box"></span>Family floater</label>
+              <label class="checkbox"><input type="checkbox" id="fCritical"><span class="checkbox-box"></span>Critical illness cover</label>
+              <label class="checkbox"><input type="checkbox" id="fCashless"><span class="checkbox-box"></span>Cashless only</label>
+            </div>
+            <button class="btn-ghost btn-sm" data-action="reset-filters">Reset filters</button>
+          </div>
+
+          <div class="policy-grid" id="policyGrid"></div>
+        </div>
+
+        <div class="policy-compare-panel" data-policy-panel="compare" hidden>
+          <div id="compareEmpty" class="empty-state">
+            <div class="empty-illustration">⚖️</div>
+            <h3>Select policies to compare</h3>
+            <p>Pick 2–3 plans from Browse and they'll line up here side by side.</p>
+            <button class="btn-primary btn-sm" data-action="set-policy-tab" data-tab="browse">Browse policies</button>
+          </div>
+          <div class="compare-table-wrap" id="compareTableWrap" hidden></div>
+        </div>
+      </section>
+
+      <!-- ============ POLICY DETAILS ============ -->
+      <section class="page" data-page="policy-detail">
+        <button class="back-btn" data-action="go-nav" data-nav="policies">← Back to marketplace</button>
+        <div id="policyDetailContent"></div>
+      </section>
+
+      <!-- ============ HOSPITALS ============ -->
+      <section class="page" data-page="hospitals">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Network</p>
+            <h1>Hospitals near you</h1>
+          </div>
+          <label class="live-toggle">
+            <input type="checkbox" id="liveLocationToggle" checked>
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            Live location
+          </label>
+        </div>
+
+        <div class="hospital-layout">
+          <div class="hospital-list-col">
+            <div class="search-toolbar">
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.6" y2="16.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <input type="text" id="hospitalSearchInput" placeholder="Search hospitals, specialities…">
+              </div>
+            </div>
+            <div class="hospital-chip-row">
+              <button class="chip-filter active" data-hfilter="all">All</button>
+              <button class="chip-filter" data-hfilter="emergency">Emergency</button>
+              <button class="chip-filter" data-hfilter="cashless">Cashless</button>
+            </div>
+            <div class="hospital-list" id="hospitalList"></div>
+          </div>
+          <div class="hospital-map-col">
+            <div class="mock-map" id="mockMap">
+              <div class="map-grid"></div>
+              <div class="map-you-pin" title="You are here"></div>
+              <div id="mapPins"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CLAIMS (tracker + list) ============ -->
+      <section class="page" data-page="claims">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Claims center</p>
+            <h1>Track &amp; file claims</h1>
+          </div>
+          <button class="btn-primary" data-action="start-claim">+ File new claim</button>
+        </div>
+
+        <div class="claims-grid">
+          <div class="card span-12">
+            <div class="card-head-row">
+              <p class="card-eyebrow">Active claim — CLM-2026-00417</p>
+              <span class="chip chip-warning">Medical review</span>
+            </div>
+
+            <div class="claim-tracker" id="claimTracker">
+              <div class="tracker-step done" data-step="0">
+                <div class="tracker-dot">✓</div>
+                <div class="tracker-info"><h5>Submitted</h5><p>16 Jul, 10:24 AM</p></div>
+              </div>
+              <div class="tracker-line done"></div>
+              <div class="tracker-step done" data-step="1">
+                <div class="tracker-dot">✓</div>
+                <div class="tracker-info"><h5>Verification</h5><p>16 Jul, 4:10 PM</p></div>
+              </div>
+              <div class="tracker-line done"></div>
+              <div class="tracker-step active" data-step="2">
+                <div class="tracker-dot"><span class="pulse"></span></div>
+                <div class="tracker-info"><h5>Medical review</h5><p>In progress</p></div>
+              </div>
+              <div class="tracker-line"></div>
+              <div class="tracker-step" data-step="3">
+                <div class="tracker-dot"></div>
+                <div class="tracker-info"><h5>Approval</h5><p>Pending</p></div>
+              </div>
+              <div class="tracker-line"></div>
+              <div class="tracker-step" data-step="4">
+                <div class="tracker-dot"></div>
+                <div class="tracker-info"><h5>Payment</h5><p>Pending</p></div>
+              </div>
+            </div>
+
+            <div class="claim-alert">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 9v4M12 17h.01M10.3 3.86L1.8 18a1 1 0 00.87 1.5h18.6a1 1 0 00.87-1.5L13.7 3.86a1 1 0 00-1.74 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              <div>
+                <h5>1 document missing</h5>
+                <p>Doctor's discharge certificate is required to proceed to approval.</p>
+              </div>
+              <button class="btn-secondary btn-sm" data-action="open-tool" data-tool="upload-doc">Upload now</button>
+            </div>
+
+            <div class="claim-meta-row">
+              <div><span class="label">Claim amount</span><span class="value">₹86,400</span></div>
+              <div><span class="label">Hospital</span><span class="value">Apollo Hospitals, Vaishali</span></div>
+              <div><span class="label">Est. completion</span><span class="value">3–4 business days</span></div>
+            </div>
+          </div>
+
+          <div class="card span-12">
+            <p class="card-eyebrow">Claim history</p>
+            <div class="table-wrap">
+              <table class="data-table" id="claimsHistoryTable"></table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RENEWALS ============ -->
+      <section class="page" data-page="renewals">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Renewals</p>
+            <h1>Keep your coverage active</h1>
+          </div>
+        </div>
+
+        <div class="renewal-hero">
+          <div class="renewal-hero-left">
+            <span class="chip chip-warning">Expiring soon</span>
+            <h2>Family Health Optima Plus</h2>
+            <p>Policy No. IB-HL-2024-88231 · ₹15,00,000 cover</p>
+            <div class="countdown-row">
+              <div class="countdown-box"><span id="cdDays">58</span><label>days</label></div>
+              <div class="countdown-box"><span id="cdHours">14</span><label>hrs</label></div>
+              <div class="countdown-box"><span id="cdMins">32</span><label>min</label></div>
+            </div>
+            <div class="renewal-hero-actions">
+              <button class="btn-primary" data-action="open-renew-flow">Renew now</button>
+              <button class="btn-secondary" data-action="go-nav" data-nav="policies" data-sub="compare">Compare better plans</button>
+            </div>
+          </div>
+          <div class="renewal-hero-right">
+            <div class="discount-badge">
+              <span class="discount-pct">12%</span>
+              <span>early-bird discount if renewed before 31 Jul</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-12" id="renewFlowCard" hidden>
+          <div id="renewFlowContent"></div>
+        </div>
+      </section>
+
+      <!-- ============ DOCUMENTS ============ -->
+      <section class="page" data-page="documents">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Vault</p>
+            <h1>Your documents</h1>
+          </div>
+          <button class="btn-primary" data-action="open-tool" data-tool="upload-doc">+ Upload document</button>
+        </div>
+        <div class="doc-grid" id="docGrid"></div>
+      </section>
+
+      <!-- ============ PROFILE ============ -->
+      <section class="page" data-page="profile">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Account</p>
+            <h1>Your profile</h1>
+          </div>
+        </div>
+
+        <div class="profile-layout">
+          <div class="card span-4 profile-card">
+            <div class="profile-avatar">PS</div>
+            <h3>Priya Sharma</h3>
+            <p class="policy-no">priya.sharma@gmail.com</p>
+            <p class="policy-no">+91 98765 43210</p>
+            <button class="btn-secondary btn-sm btn-block" data-action="edit-profile">Edit profile</button>
+            <div class="profile-reward">
+              <span>Reward points</span>
+              <b>2,480 pts</b>
+            </div>
+          </div>
+
+          <div class="card span-8">
+            <p class="card-eyebrow">Family members</p>
+            <div class="family-list" id="familyList"></div>
+          </div>
+
+          <div class="card span-6">
+            <p class="card-eyebrow">Medical history</p>
+            <div class="mini-list" id="medHistoryList"></div>
+          </div>
+
+          <div class="card span-6">
+            <p class="card-eyebrow">Insurance history</p>
+            <div class="mini-list" id="insHistoryList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SETTINGS ============ -->
+      <section class="page" data-page="settings">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Preferences</p>
+            <h1>Settings</h1>
+          </div>
+        </div>
+
+        <div class="settings-list">
+          <div class="settings-row">
+            <div><h5>Dark mode</h5><p>Easier on the eyes at night</p></div>
+            <label class="live-toggle"><input type="checkbox" id="settingsDarkToggle"><span class="toggle-track"><span class="toggle-thumb"></span></span></label>
+          </div>
+          <div class="settings-row">
+            <div><h5>Push notifications</h5><p>Claims, renewals, offers</p></div>
+            <label class="live-toggle"><input type="checkbox" checked><span class="toggle-track"><span class="toggle-thumb"></span></span></label>
+          </div>
+          <div class="settings-row">
+            <div><h5>Language</h5><p>App display language</p></div>
+            <select class="select-input select-sm">
+              <option>English</option><option>हिंदी</option><option>ಕನ್ನಡ</option><option>मराठी</option>
+            </select>
+          </div>
+          <div class="settings-row">
+            <div><h5>Biometric lock</h5><p>Face ID / fingerprint to open app</p></div>
+            <label class="live-toggle"><input type="checkbox" checked><span class="toggle-track"><span class="toggle-thumb"></span></span></label>
+          </div>
+          <div class="settings-row">
+            <div><h5>Privacy &amp; data</h5><p>Manage what IndusInd Insure can access</p></div>
+            <button class="btn-secondary btn-sm" data-action="toast" data-toast="Opening privacy center…">Manage</button>
+          </div>
+          <div class="settings-row">
+            <div><h5>Security</h5><p>Password, 2FA, active sessions</p></div>
+            <button class="btn-secondary btn-sm" data-action="toast" data-toast="Opening security settings…">Manage</button>
+          </div>
+          <div class="settings-row danger">
+            <div><h5>Log out</h5><p>End your current session</p></div>
+            <button class="btn-secondary btn-sm" data-action="logout">Log out</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Mobile bottom nav -->
+  <nav class="bottom-nav">
+    <button class="bn-item active" data-nav="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Home</span></button>
+    <button class="bn-item" data-nav="policies"><svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Policies</span></button>
+    <button class="bn-item" data-nav="claims"><svg viewBox="0 0 24 24"><path d="M9 5h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Claims</span></button>
+    <button class="bn-item" data-nav="hospitals"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9.1C.8 8.4 2.6 4.8 6.3 4.3c2-.3 3.6.6 5.7 2.7 2.1-2.1 3.7-3 5.7-2.7 3.7.5 5.5 4.1 3.8 7.6C19 16.4 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Hospitals</span></button>
+    <button class="bn-item" data-nav="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Profile</span></button>
+  </nav>
+
+  <!-- Floating AI assistant button -->
+  <button class="ai-fab" data-action="toggle-ai-chat" aria-label="AI Assistant">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c1.8-4.7 5.8-7 8-7s6.2 2.3 8 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="1.4" fill="currentColor"/></svg>
+  </button>
+
+  <!-- AI chat panel -->
+  <div class="ai-chat" id="aiChat">
+    <div class="ai-chat-head">
+      <div>
+        <h4>Insure AI</h4>
+        <p><span class="dot dot-success"></span>Online · reads your policy</p>
+      </div>
+      <button class="modal-close" data-action="toggle-ai-chat">×</button>
+    </div>
+    <div class="ai-chat-body" id="aiChatBody"></div>
+    <div class="ai-chat-suggestions" id="aiChatSuggestions"></div>
+    <form class="ai-chat-input" id="aiChatForm">
+      <input type="text" id="aiChatInput" placeholder="Ask about your policy…">
+      <button type="submit" class="ai-send-btn">
+        <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+  </div>
+
+</div>
+
+<!-- ======================= GLOBAL SEARCH MODAL ======================= -->
+<div class="modal-overlay" id="searchModal">
+  <div class="modal modal-search">
+    <div class="search-input-wrap search-input-wrap--modal">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.6" y2="16.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="text" id="globalSearchInput" placeholder="Search policies, hospitals, claims, documents, settings…" autocomplete="off">
+      <button class="modal-close" data-action="close-modal" data-modal="searchModal">esc</button>
+    </div>
+    <div class="global-search-results" id="globalSearchResults"></div>
+  </div>
+</div>
+
+<!-- ======================= NOTIFICATIONS PANEL ======================= -->
+<div class="side-panel-overlay" id="notifPanelOverlay">
+  <aside class="side-panel" id="notifPanel">
+    <div class="side-panel-head">
+      <h3>Notifications</h3>
+      <button class="modal-close" data-action="close-notifications">×</button>
+    </div>
+    <div class="side-panel-body" id="notifBody"></div>
+  </aside>
+</div>
+
+<!-- ======================= EMERGENCY SOS MODAL ======================= -->
+<div class="modal-overlay" id="sosModal">
+  <div class="modal modal-sm modal-sos">
+    <button class="modal-close" data-action="close-modal" data-modal="sosModal">×</button>
+    <div class="sos-icon">🚨</div>
+    <h2>Emergency SOS</h2>
+    <p class="modal-sub">This alerts your emergency contacts and shares your live location with the nearest cashless hospital.</p>
+    <div class="sos-actions">
+      <button class="btn-danger btn-block" data-action="trigger-sos">Alert emergency contacts</button>
+      <button class="btn-secondary btn-block" data-action="call-ambulance">Call ambulance — 108</button>
+      <button class="btn-ghost btn-block" data-action="go-nav" data-nav="hospitals" data-modal="sosModal">Find nearest hospital</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= TOOL MODALS (generic host) ======================= -->
+<div class="modal-overlay" id="toolModal">
+  <div class="modal modal-lg" id="toolModalInner">
+    <button class="modal-close" data-action="close-modal" data-modal="toolModal">×</button>
+    <div id="toolModalContent"></div>
+  </div>
+</div>
+
+<!-- ======================= BOTTOM SHEET (mobile) ======================= -->
+<div class="sheet-overlay" id="sheetOverlay">
+  <div class="bottom-sheet" id="bottomSheet">
+    <div class="sheet-handle"></div>
+    <div id="sheetContent"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
