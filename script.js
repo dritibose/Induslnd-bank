@@ -1101,6 +1101,7 @@ function renderClaimWizard(content, step){
       <div class="upload-doc-types" id="cwDocGrid">
         ${CLAIM_DOC_TYPES.map(d=>`<div class="upload-doc-type ${claimUploaded.has(d.name)?'uploaded':''}" data-doc="${d.name}"><span class="udt-icon">${claimUploaded.has(d.name)?'✓':d.icon}</span>${d.name}</div>`).join("")}
       </div>
+      <p class="id-helper-text"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg>Your government ID confirms your identity for KYC compliance, prevents fraud, and speeds up claim processing. All details are encrypted and stored securely.</p>
       <div class="wizard-nav"><button class="btn-ghost" data-cw-next="1">← Back</button><button class="btn-primary" id="cwToStep3">Continue</button></div>`;
     $all(".upload-doc-type", content).forEach(row=>{
       row.addEventListener("click", ()=>{
